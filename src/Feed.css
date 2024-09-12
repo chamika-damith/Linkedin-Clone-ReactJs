@@ -36,3 +36,8 @@
 .feed__input > form > button{
     display: none;
 }
+
+.feed__inputOption{
+    display: flex;
+    justify-content: space-evenly;
+}
