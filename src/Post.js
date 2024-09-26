@@ -6,12 +6,18 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ChatIcon from '@mui/icons-material/Chat';
 import ShareIcon from '@mui/icons-material/Share';
 import SendIcon from '@mui/icons-material/Send';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
 
 function Post({ name, description, message, photoUrl }) {
+
+    const user = useSelector(selectUser);
+
+
     return (
         <div className='post'>
             <div className='post__header'>
-                <Avatar />
+                <Avatar src={photoUrl}>{name[0]}</Avatar>
                 <div className='post__info'>
                     <h2>{name}</h2>
                     <p>{description}</p>

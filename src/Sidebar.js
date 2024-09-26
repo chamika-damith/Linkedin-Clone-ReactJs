@@ -7,6 +7,7 @@ import { selectUser } from './features/userSlice';
 function Sidebar() {
 
     const user = useSelector(selectUser);
+    
     const recentItem= (topic) =>(
         <div className='sidebar_recentItem'>
             <span className='sidebar__hash'>#</span>

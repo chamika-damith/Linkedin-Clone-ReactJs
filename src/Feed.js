@@ -9,9 +9,13 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post';
 import { db } from './firebase';
 import { collection, addDoc,query, onSnapshot,orderBy, serverTimestamp } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
 
 
 function Feed() {
+    const user = useSelector(selectUser);
+
     const [input, setInput] = useState("");
     const [posts, setPosts] = useState([]);
 
@@ -35,10 +39,10 @@ function Feed() {
         e.preventDefault();
         try {
             await addDoc(collection(db, 'posts'), {
-                name: 'chamika damith',
-                description: 'this is a description',
+                name: user.displayName,
+                description: user.email,
                 message: input,
-                photoUrl: '',
+                photoUrl: user.photoURL || "",
                 timestamp: serverTimestamp(),
             });
             setInput(""); 
@@ -52,7 +56,7 @@ function Feed() {
                 <div className='feed__input'>
                     <CreateIcon />
                     <form>
-                        <input value={input} onChange={e => setInput(e.target.value)} type='text' />
+                        <input value={input} onChange={e => setInput(e.target.value)} type='text' placeholder='Start a post, try with AI' />
                         <button onClick={sendPost} type='submit'>Send</button>
                     </form>
                 </div>
