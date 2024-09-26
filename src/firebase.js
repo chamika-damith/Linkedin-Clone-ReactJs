@@ -1,9 +1,7 @@
-// Import only the functions you need from the modular Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAbpzfZSmOQy41NRXUP8oM_MaH5KRvxCBw",
   authDomain: "linkedin-clone-55f6b.firebaseapp.com",
@@ -16,6 +14,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
-const auth = getAuth(firebaseApp);
+const auth = getAuth();
 
-export { db, auth };
+export { db, auth, createUserWithEmailAndPassword ,signInWithEmailAndPassword};
